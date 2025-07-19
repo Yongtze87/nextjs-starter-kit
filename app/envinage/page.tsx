@@ -116,31 +116,205 @@ export default function EnvinageAI() {
       files: [
         {
           id: '1',
-          name: 'components',
+          name: 'src',
           type: 'folder',
           children: [
             {
               id: '2',
-              name: 'Header.jsx',
+              name: 'components',
+              type: 'folder',
+              children: [
+                {
+                  id: '3',
+                  name: 'ui',
+                  type: 'folder',
+                  children: [
+                    {
+                      id: '4',
+                      name: 'Button.jsx',
+                      type: 'file',
+                      language: 'javascript',
+                      content: 'import React from "react";\n\nexport default function Button({ children, variant = "primary", ...props }) {\n  const baseClasses = "px-4 py-2 rounded font-medium";\n  const variants = {\n    primary: "bg-blue-600 text-white hover:bg-blue-700",\n    secondary: "bg-gray-200 text-gray-900 hover:bg-gray-300"\n  };\n  \n  return (\n    <button className={`${baseClasses} ${variants[variant]}`} {...props}>\n      {children}\n    </button>\n  );\n}',
+                      size: 445,
+                      modified: new Date()
+                    },
+                    {
+                      id: '5',
+                      name: 'Card.jsx',
+                      type: 'file',
+                      language: 'javascript',
+                      content: 'import React from "react";\n\nexport default function Card({ children, className = "" }) {\n  return (\n    <div className={`bg-white rounded-lg shadow-md p-6 ${className}`}>\n      {children}\n    </div>\n  );\n}',
+                      size: 215,
+                      modified: new Date()
+                    }
+                  ]
+                },
+                {
+                  id: '6',
+                  name: 'Header.jsx',
+                  type: 'file',
+                  language: 'javascript',
+                  content: 'import React from "react";\nimport Button from "./ui/Button";\n\nexport default function Header() {\n  return (\n    <header className="bg-blue-600 text-white p-4">\n      <div className="container mx-auto flex justify-between items-center">\n        <h1 className="text-2xl font-bold">My Portfolio</h1>\n        <Button variant="secondary">Contact</Button>\n      </div>\n    </header>\n  );\n}',
+                  size: 345,
+                  modified: new Date()
+                },
+                {
+                  id: '7',
+                  name: 'Footer.jsx',
+                  type: 'file',
+                  language: 'javascript',
+                  content: 'import React from "react";\n\nexport default function Footer() {\n  return (\n    <footer className="bg-gray-800 text-white p-4 mt-auto">\n      <div className="container mx-auto text-center">\n        <p>&copy; 2024 My Portfolio. All rights reserved.</p>\n      </div>\n    </footer>\n  );\n}',
+                  size: 285,
+                  modified: new Date()
+                }
+              ]
+            },
+            {
+              id: '8',
+              name: 'pages',
+              type: 'folder',
+              children: [
+                {
+                  id: '9',
+                  name: 'Home.jsx',
+                  type: 'file',
+                  language: 'javascript',
+                  content: 'import React from "react";\nimport Header from "../components/Header";\nimport Card from "../components/ui/Card";\n\nexport default function Home() {\n  return (\n    <div className="min-h-screen">\n      <Header />\n      <main className="container mx-auto py-8">\n        <h2 className="text-3xl font-bold mb-6">Welcome to My Portfolio</h2>\n        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">\n          <Card>\n            <h3 className="text-xl font-semibold mb-2">About Me</h3>\n            <p>Full-stack developer with passion for creating amazing web experiences.</p>\n          </Card>\n          <Card>\n            <h3 className="text-xl font-semibold mb-2">Projects</h3>\n            <p>Check out my latest work and side projects.</p>\n          </Card>\n          <Card>\n            <h3 className="text-xl font-semibold mb-2">Skills</h3>\n            <p>React, Node.js, TypeScript, and more.</p>\n          </Card>\n        </div>\n      </main>\n    </div>\n  );\n}',
+                  size: 845,
+                  modified: new Date()
+                },
+                {
+                  id: '10',
+                  name: 'About.jsx',
+                  type: 'file',
+                  language: 'javascript',
+                  content: 'import React from "react";\nimport Header from "../components/Header";\n\nexport default function About() {\n  return (\n    <div className="min-h-screen">\n      <Header />\n      <main className="container mx-auto py-8">\n        <h2 className="text-3xl font-bold mb-6">About Me</h2>\n        <p className="text-lg leading-relaxed">I am a passionate full-stack developer...</p>\n      </main>\n    </div>\n  );\n}',
+                  size: 425,
+                  modified: new Date()
+                }
+              ]
+            },
+            {
+              id: '11',
+              name: 'styles',
+              type: 'folder',
+              children: [
+                {
+                  id: '12',
+                  name: 'globals.css',
+                  type: 'file',
+                  language: 'css',
+                  content: '@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\nbody {\n  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;\n}\n\n.container {\n  max-width: 1200px;\n}',
+                  size: 185,
+                  modified: new Date()
+                }
+              ]
+            },
+            {
+              id: '13',
+              name: 'App.jsx',
               type: 'file',
               language: 'javascript',
-              content: 'import React from "react";\n\nexport default function Header() {\n  return (\n    <header className="bg-blue-600 text-white p-4">\n      <h1>My Portfolio</h1>\n    </header>\n  );\n}',
+              content: 'import React from "react";\nimport { BrowserRouter as Router, Routes, Route } from "react-router-dom";\nimport Home from "./pages/Home";\nimport About from "./pages/About";\nimport "./styles/globals.css";\n\nfunction App() {\n  return (\n    <Router>\n      <Routes>\n        <Route path="/" element={<Home />} />\n        <Route path="/about" element={<About />} />\n      </Routes>\n    </Router>\n  );\n}\n\nexport default App;',
+              size: 445,
+              modified: new Date()
+            }
+          ]
+        },
+        {
+          id: '14',
+          name: 'public',
+          type: 'folder',
+          children: [
+            {
+              id: '15',
+              name: 'index.html',
+              type: 'file',
+              language: 'html',
+              content: '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>My Portfolio</title>\n</head>\n<body>\n  <div id="root"></div>\n</body>\n</html>',
               size: 245,
               modified: new Date()
             }
           ]
         },
         {
-          id: '3',
+          id: '16',
+          name: 'package.json',
+          type: 'file',
+          language: 'json',
+          content: '{\n  "name": "web-portfolio",\n  "version": "1.0.0",\n  "private": true,\n  "dependencies": {\n    "react": "^18.2.0",\n    "react-dom": "^18.2.0",\n    "react-router-dom": "^6.8.0"\n  },\n  "scripts": {\n    "start": "react-scripts start",\n    "build": "react-scripts build",\n    "test": "react-scripts test"\n  }\n}',
+          size: 345,
+          modified: new Date()
+        },
+        {
+          id: '17',
           name: 'README.md',
           type: 'file',
           language: 'markdown',
-          content: '# My Portfolio\n\nA modern React portfolio website.\n\n## Features\n- Responsive design\n- Modern UI components\n- Fast performance',
-          size: 156,
+          content: '# My Portfolio\n\nA modern React portfolio website showcasing my work and skills.\n\n## Features\n- Responsive design\n- Modern UI components\n- Fast performance\n- Clean architecture\n\n## Getting Started\n\n```bash\nnpm install\nnpm start\n```\n\n## Project Structure\n\n- `/src/components` - Reusable UI components\n- `/src/pages` - Page components\n- `/src/styles` - Global styles\n- `/public` - Static assets',
+          size: 456,
           modified: new Date()
         }
       ],
       chats: ['1'],
+      created: new Date(),
+      modified: new Date()
+    },
+    {
+      id: '2',
+      name: 'E-commerce API',
+      description: 'RESTful API for online store',
+      files: [
+        {
+          id: '18',
+          name: 'src',
+          type: 'folder',
+          children: [
+            {
+              id: '19',
+              name: 'controllers',
+              type: 'folder',
+              children: [
+                {
+                  id: '20',
+                  name: 'productController.js',
+                  type: 'file',
+                  language: 'javascript',
+                  content: 'const Product = require("../models/Product");\n\nexports.getAllProducts = async (req, res) => {\n  try {\n    const products = await Product.find();\n    res.json(products);\n  } catch (error) {\n    res.status(500).json({ message: error.message });\n  }\n};\n\nexports.createProduct = async (req, res) => {\n  try {\n    const product = new Product(req.body);\n    await product.save();\n    res.status(201).json(product);\n  } catch (error) {\n    res.status(400).json({ message: error.message });\n  }\n};',
+                  size: 485,
+                  modified: new Date()
+                }
+              ]
+            },
+            {
+              id: '21',
+              name: 'models',
+              type: 'folder',
+              children: [
+                {
+                  id: '22',
+                  name: 'Product.js',
+                  type: 'file',
+                  language: 'javascript',
+                  content: 'const mongoose = require("mongoose");\n\nconst productSchema = new mongoose.Schema({\n  name: {\n    type: String,\n    required: true\n  },\n  price: {\n    type: Number,\n    required: true\n  },\n  description: String,\n  category: String,\n  inStock: {\n    type: Boolean,\n    default: true\n  }\n}, {\n  timestamps: true\n});\n\nmodule.exports = mongoose.model("Product", productSchema);',
+                  size: 385,
+                  modified: new Date()
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: '23',
+          name: 'README.md',
+          type: 'file',
+          language: 'markdown',
+          content: '# E-commerce API\n\nRESTful API for managing products, orders, and users.\n\n## Endpoints\n\n### Products\n- GET /api/products\n- POST /api/products\n- PUT /api/products/:id\n- DELETE /api/products/:id\n\n## Setup\n\n```bash\nnpm install\nnpm start\n```',
+          size: 285,
+          modified: new Date()
+        }
+      ],
+      chats: ['2'],
       created: new Date(),
       modified: new Date()
     }
@@ -154,15 +328,115 @@ export default function EnvinageAI() {
       messages: [],
       created: new Date(),
       modified: new Date()
+    },
+    {
+      id: '2',
+      name: 'API Design Discussion',
+      projectId: '2',
+      messages: [],
+      created: new Date(Date.now() - 86400000),
+      modified: new Date(Date.now() - 86400000)
+    },
+    {
+      id: '3',
+      name: 'React Component Help',
+      projectId: '1',
+      messages: [],
+      created: new Date(Date.now() - 172800000),
+      modified: new Date(Date.now() - 172800000)
+    },
+    {
+      id: '4',
+      name: 'Database Schema Design',
+      messages: [],
+      created: new Date(Date.now() - 259200000),
+      modified: new Date(Date.now() - 259200000)
+    },
+    {
+      id: '5',
+      name: 'CSS Styling Questions',
+      messages: [],
+      created: new Date(Date.now() - 432000000),
+      modified: new Date(Date.now() - 432000000)
     }
   ])
   
-  const [currentProject, setCurrentProject] = useState<Project | null>(projects[0])
+  const [currentProject, setCurrentProject] = useState<Project | null>(null)
   const [currentChat, setCurrentChat] = useState<Chat | null>(chats[0])
-  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(['1']))
+  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(['1', '2', '18', '19', '21']))
+  
+  // Artifacts Management
+  const [artifacts, setArtifacts] = useState<Artifact[]>([
+    {
+      id: 'art1',
+      type: 'code',
+      name: 'LoginForm.jsx',
+      content: 'import React, { useState } from "react";\n\nexport default function LoginForm() {\n  const [email, setEmail] = useState("");\n  const [password, setPassword] = useState("");\n\n  const handleSubmit = (e) => {\n    e.preventDefault();\n    console.log("Login:", { email, password });\n  };\n\n  return (\n    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">\n      <h2 className="text-2xl font-bold mb-4">Login</h2>\n      <div className="mb-4">\n        <label className="block text-sm font-medium mb-2">Email</label>\n        <input\n          type="email"\n          value={email}\n          onChange={(e) => setEmail(e.target.value)}\n          className="w-full p-2 border rounded-md"\n          required\n        />\n      </div>\n      <div className="mb-4">\n        <label className="block text-sm font-medium mb-2">Password</label>\n        <input\n          type="password"\n          value={password}\n          onChange={(e) => setPassword(e.target.value)}\n          className="w-full p-2 border rounded-md"\n          required\n        />\n      </div>\n      <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">\n        Login\n      </button>\n    </form>\n  );\n}',
+      language: 'javascript',
+      preview: 'A complete login form component with email and password fields'
+    },
+    {
+      id: 'art2',
+      type: 'document',
+      name: 'API_Documentation.md',
+      content: '# API Documentation\n\n## Authentication Endpoints\n\n### POST /api/auth/login\nAuthenticates a user and returns a JWT token.\n\n**Request Body:**\n```json\n{\n  "email": "user@example.com",\n  "password": "password123"\n}\n```\n\n**Response:**\n```json\n{\n  "token": "jwt_token_here",\n  "user": {\n    "id": 1,\n    "email": "user@example.com",\n    "name": "John Doe"\n  }\n}\n```\n\n### POST /api/auth/register\nRegisters a new user account.\n\n**Request Body:**\n```json\n{\n  "name": "John Doe",\n  "email": "user@example.com",\n  "password": "password123"\n}\n```\n\n## Product Endpoints\n\n### GET /api/products\nRetrieve all products with pagination.\n\n**Query Parameters:**\n- `page` (optional): Page number (default: 1)\n- `limit` (optional): Items per page (default: 10)\n- `category` (optional): Filter by category\n\n**Response:**\n```json\n{\n  "products": [...],\n  "totalCount": 150,\n  "currentPage": 1,\n  "totalPages": 15\n}\n```',
+      language: 'markdown',
+      preview: 'Complete API documentation with authentication and product endpoints'
+    },
+    {
+      id: 'art3',
+      type: 'image',
+      name: 'hero-banner.svg',
+      content: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMzMzM2ZmO3N0b3Atb3BhY2l0eToxIiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3R5bGU9InN0b3AtY29sb3I6IzY2NjZmZjtzdG9wLW9wYWNpdHk6MSIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMzMzM2ZmO3N0b3Atb3BhY2l0eToxIiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZ3JhZGllbnQpIi8+CiAgPGNpcmNsZSBjeD0iNjAwIiBjeT0iMTAwIiByPSI1MCIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjEpIi8+CiAgPGNpcmNsZSBjeD0iNzAwIiBjeT0iMzAwIiByPSI4MCIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjA1KSIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMjAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXdlaWdodD0iYm9sZCI+V2VsY29tZTwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjI1MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VG8gT3VyIEFtYXppbmcgUGxhdGZvcm08L3RleHQ+Cjwvc3ZnPgo=',
+      preview: 'Modern hero banner with blue gradient and welcome text'
+    }
+  ])
   
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  // Helper functions
+  const createNewChat = () => {
+    const newChat: Chat = {
+      id: Date.now().toString(),
+      name: `New Chat ${chats.length + 1}`,
+      projectId: currentProject?.id,
+      messages: [],
+      created: new Date(),
+      modified: new Date()
+    }
+    setChats(prev => [newChat, ...prev])
+    setCurrentChat(newChat)
+    setMessages([])
+  }
+
+  const createNewProject = () => {
+    const newProject: Project = {
+      id: Date.now().toString(),
+      name: `Project ${projects.length + 1}`,
+      description: 'New project description',
+      files: [],
+      chats: [],
+      created: new Date(),
+      modified: new Date()
+    }
+    setProjects(prev => [newProject, ...prev])
+  }
+
+  const deleteChat = (chatId: string) => {
+    setChats(prev => prev.filter(chat => chat.id !== chatId))
+    if (currentChat?.id === chatId) {
+      setCurrentChat(chats.find(chat => chat.id !== chatId) || null)
+      setMessages([])
+    }
+  }
+
+  const deleteProject = (projectId: string) => {
+    setProjects(prev => prev.filter(project => project.id !== projectId))
+    if (currentProject?.id === projectId) {
+      setCurrentProject(null)
+    }
+  }
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -333,13 +607,21 @@ Would you like me to help you with something specific? Try asking me to generate
           ) : (
             <>
               <div className="w-4" />
-              {file.language === 'javascript' ? (
-                <Code className="h-4 w-4 text-yellow-600" />
-              ) : file.language === 'markdown' ? (
-                <FileText className="h-4 w-4 text-green-600" />
-              ) : (
-                <File className="h-4 w-4 text-gray-600" />
-              )}
+                             {file.language === 'javascript' ? (
+                 <Code className="h-4 w-4 text-yellow-600" />
+               ) : file.language === 'typescript' ? (
+                 <Code className="h-4 w-4 text-blue-600" />
+               ) : file.language === 'markdown' ? (
+                 <FileText className="h-4 w-4 text-green-600" />
+               ) : file.language === 'css' ? (
+                 <File className="h-4 w-4 text-blue-500" />
+               ) : file.language === 'html' ? (
+                 <File className="h-4 w-4 text-orange-500" />
+               ) : file.language === 'json' ? (
+                 <File className="h-4 w-4 text-yellow-500" />
+               ) : (
+                 <File className="h-4 w-4 text-gray-600" />
+               )}
               <span className="text-sm">{file.name}</span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -452,7 +734,7 @@ Would you like me to help you with something specific? Try asking me to generate
           <div className="p-4 border-b border-gray-200">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">E</span>
                 </div>
                 {sidebarOpen && <span className="font-semibold text-lg">Envinage AI</span>}
@@ -469,10 +751,13 @@ Would you like me to help you with something specific? Try asking me to generate
             
             {sidebarOpen && (
               <>
-                <Button className="w-full mb-3 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700">
-                  <Plus className="h-4 w-4 mr-2" />
-                  New Chat
-                </Button>
+                                 <Button 
+                   className="w-full mb-3 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800"
+                   onClick={createNewChat}
+                 >
+                   <Plus className="h-4 w-4 mr-2" />
+                   New Chat
+                 </Button>
                 
                 <div className="flex gap-1">
                   <Button
@@ -515,16 +800,21 @@ Would you like me to help you with something specific? Try asking me to generate
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <h3 className="font-medium text-sm text-gray-700">Recent Chats</h3>
-                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="h-6 w-6 p-0"
+                        onClick={createNewChat}
+                      >
                         <Plus className="h-3 w-3" />
                       </Button>
                     </div>
                     {chats.map(chat => (
                       <div
                         key={chat.id}
-                        className={`p-3 rounded-lg cursor-pointer transition-colors ${
-                          currentChat?.id === chat.id ? 'bg-orange-100 border border-orange-200' : 'hover:bg-gray-100'
-                        }`}
+                                                 className={`p-3 rounded-lg cursor-pointer transition-colors ${
+                           currentChat?.id === chat.id ? 'bg-blue-100 border border-blue-200' : 'hover:bg-gray-100'
+                         }`}
                         onClick={() => setCurrentChat(chat)}
                       >
                         <div className="font-medium text-sm">{chat.name}</div>
@@ -545,7 +835,12 @@ Would you like me to help you with something specific? Try asking me to generate
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <h3 className="font-medium text-sm text-gray-700">Projects</h3>
-                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="h-6 w-6 p-0"
+                        onClick={createNewProject}
+                      >
                         <FolderPlus className="h-3 w-3" />
                       </Button>
                     </div>
@@ -585,14 +880,36 @@ Would you like me to help you with something specific? Try asking me to generate
                 {activeView === 'artifacts' && (
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-medium text-sm text-gray-700">Artifacts</h3>
+                      <h3 className="font-medium text-sm text-gray-700">Recent Artifacts</h3>
                       <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
                         <Search className="h-3 w-3" />
                       </Button>
                     </div>
-                    <div className="text-sm text-gray-500">
-                      Generated artifacts will appear here
-                    </div>
+                    {artifacts.map(artifact => (
+                      <div
+                        key={artifact.id}
+                        className="p-3 rounded-lg hover:bg-gray-100 cursor-pointer border border-gray-200"
+                        onClick={() => {
+                          setPreviewContent(artifact)
+                          setShowPreview(true)
+                        }}
+                      >
+                        <div className="flex items-center gap-2 mb-2">
+                          {artifact.type === 'code' ? (
+                            <Code className="h-4 w-4 text-blue-600" />
+                          ) : artifact.type === 'image' ? (
+                            <Image className="h-4 w-4 text-green-600" />
+                          ) : (
+                            <FileText className="h-4 w-4 text-purple-600" />
+                          )}
+                          <span className="font-medium text-sm">{artifact.name}</span>
+                        </div>
+                        <p className="text-xs text-gray-600">{artifact.preview}</p>
+                        <div className="text-xs text-gray-400 mt-1">
+                          {artifact.type} • Today
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
@@ -654,9 +971,9 @@ Would you like me to help you with something specific? Try asking me to generate
             <div className="max-w-4xl mx-auto p-6 space-y-6">
               {messages.length === 0 ? (
                 <div className="text-center py-12">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span className="text-white font-bold text-xl">E</span>
-                  </div>
+                                     <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                     <span className="text-white font-bold text-xl">E</span>
+                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-4">
                     Welcome to Envinage AI
                   </h2>
@@ -670,8 +987,8 @@ Would you like me to help you with something specific? Try asking me to generate
                       { icon: FileText, title: 'Write Documents', desc: 'Generate articles, documentation, and text' },
                       { icon: Image, title: 'Create Images', desc: 'Generate visuals and graphics with DALL-E' },
                     ].map((item, index) => (
-                      <div key={index} className="p-4 border border-gray-200 rounded-lg hover:border-orange-300 cursor-pointer transition-colors">
-                        <item.icon className="h-8 w-8 text-orange-500 mb-3" />
+                                             <div key={index} className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 cursor-pointer transition-colors">
+                         <item.icon className="h-8 w-8 text-blue-500 mb-3" />
                         <h3 className="font-medium mb-2">{item.title}</h3>
                         <p className="text-sm text-gray-600">{item.desc}</p>
                       </div>
@@ -683,11 +1000,11 @@ Would you like me to help you with something specific? Try asking me to generate
                   <div key={message.id} className="space-y-4">
                     <div className="flex items-start gap-4">
                       <Avatar className="h-8 w-8 mt-1">
-                        {message.role === 'assistant' ? (
-                          <AvatarFallback className="bg-gradient-to-br from-orange-500 to-red-600 text-white">
-                            E
-                          </AvatarFallback>
-                        ) : (
+                                                 {message.role === 'assistant' ? (
+                           <AvatarFallback className="bg-gradient-to-br from-blue-500 to-blue-700 text-white">
+                             E
+                           </AvatarFallback>
+                         ) : (
                           <AvatarFallback>
                             <User className="h-4 w-4" />
                           </AvatarFallback>
@@ -785,22 +1102,22 @@ Would you like me to help you with something specific? Try asking me to generate
               )}
 
               {isLoading && (
-                <div className="flex items-start gap-4">
-                  <Avatar className="h-8 w-8 mt-1">
-                    <AvatarFallback className="bg-gradient-to-br from-orange-500 to-red-600 text-white">
-                      E
-                    </AvatarFallback>
-                  </Avatar>
+                                 <div className="flex items-start gap-4">
+                   <Avatar className="h-8 w-8 mt-1">
+                     <AvatarFallback className="bg-gradient-to-br from-blue-500 to-blue-700 text-white">
+                       E
+                     </AvatarFallback>
+                   </Avatar>
                   <div className="flex-1 space-y-2">
                     <div className="flex items-center gap-2">
                       <span className="font-medium text-sm">Envinage AI</span>
                       <span className="text-xs text-gray-500">thinking...</span>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                      <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                    </div>
+                                         <div className="flex items-center gap-1">
+                       <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
+                       <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                       <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                     </div>
                   </div>
                 </div>
               )}
@@ -859,7 +1176,7 @@ Would you like me to help you with something specific? Try asking me to generate
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Message Envinage AI..."
-                  className="min-h-[60px] max-h-[200px] pr-20 resize-none border-gray-300 focus:border-orange-500 focus:ring-orange-500"
+                                     className="min-h-[60px] max-h-[200px] pr-20 resize-none border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                   disabled={isLoading}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
@@ -889,7 +1206,7 @@ Would you like me to help you with something specific? Try asking me to generate
                     type="submit"
                     size="sm"
                     disabled={!input.trim() || isLoading}
-                    className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
+                                         className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800"
                   >
                     <Send className="h-4 w-4" />
                   </Button>
