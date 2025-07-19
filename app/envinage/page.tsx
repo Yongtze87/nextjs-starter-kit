@@ -29,7 +29,6 @@ import {
   Menu,
   X,
   Search,
-  Filter,
   Archive,
   Bookmark
 } from 'lucide-react'
@@ -41,9 +40,8 @@ import { Separator } from '@/components/ui/separator'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { TooltipProvider } from '@/components/ui/tooltip'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 interface Message {
@@ -104,7 +102,7 @@ export default function EnvinageAI() {
   const [responseMode, setResponseMode] = useState<'concise' | 'normal' | 'detailed'>('normal')
   const [thinkingMode, setThinkingMode] = useState(false)
   const [showPreview, setShowPreview] = useState(false)
-  const [previewContent, setPreviewContent] = useState<any>(null)
+  const [previewContent, setPreviewContent] = useState<Artifact | null>(null)
   const [sidebarOpen, setSidebarOpen] = useState(true)
   
   // Project Management
@@ -366,7 +364,7 @@ export default function EnvinageAI() {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(['1', '2', '18', '19', '21']))
   
   // Artifacts Management
-  const [artifacts, setArtifacts] = useState<Artifact[]>([
+  const [artifacts] = useState<Artifact[]>([
     {
       id: 'art1',
       type: 'code',
@@ -423,20 +421,21 @@ export default function EnvinageAI() {
     setProjects(prev => [newProject, ...prev])
   }
 
-  const deleteChat = (chatId: string) => {
-    setChats(prev => prev.filter(chat => chat.id !== chatId))
-    if (currentChat?.id === chatId) {
-      setCurrentChat(chats.find(chat => chat.id !== chatId) || null)
-      setMessages([])
-    }
-  }
+  // Commented out unused functions to avoid linting errors
+  // const deleteChat = (chatId: string) => {
+  //   setChats(prev => prev.filter(chat => chat.id !== chatId))
+  //   if (currentChat?.id === chatId) {
+  //     setCurrentChat(chats.find(chat => chat.id !== chatId) || null)
+  //     setMessages([])
+  //   }
+  // }
 
-  const deleteProject = (projectId: string) => {
-    setProjects(prev => prev.filter(project => project.id !== projectId))
-    if (currentProject?.id === projectId) {
-      setCurrentProject(null)
-    }
-  }
+  // const deleteProject = (projectId: string) => {
+  //   setProjects(prev => prev.filter(project => project.id !== projectId))
+  //   if (currentProject?.id === projectId) {
+  //     setCurrentProject(null)
+  //   }
+  // }
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -710,16 +709,16 @@ Would you like me to help you with something specific? Try asking me to generate
           </div>
         )
       case 'image':
-        return (
-          <div className="text-center">
-            <img
-              src={previewContent.content}
-              alt={previewContent.name}
-              className="max-w-full h-auto rounded-lg shadow-lg"
-            />
-            <p className="text-sm text-gray-600 mt-2">{previewContent.preview}</p>
-          </div>
-        )
+                 return (
+           <div className="text-center">
+             <img
+               src={previewContent.content}
+               alt={previewContent.preview || previewContent.name}
+               className="max-w-full h-auto rounded-lg shadow-lg"
+             />
+             <p className="text-sm text-gray-600 mt-2">{previewContent.preview}</p>
+           </div>
+         )
       default:
         return <div>Preview not available</div>
     }
@@ -1133,30 +1132,30 @@ Would you like me to help you with something specific? Try asking me to generate
               <div className="flex items-center gap-4 text-sm">
                 <div className="flex items-center gap-2">
                   <Label>Model:</Label>
-                  <Select value={selectedModel} onValueChange={(value: any) => setSelectedModel(value)}>
-                    <SelectTrigger className="w-32">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="gemini">Gemini 2.5</SelectItem>
-                      <SelectItem value="claude">Claude Sonnet</SelectItem>
-                      <SelectItem value="dalle">DALL-E 3</SelectItem>
-                    </SelectContent>
-                  </Select>
+                                     <Select value={selectedModel} onValueChange={(value: 'gemini' | 'claude' | 'dalle') => setSelectedModel(value)}>
+                     <SelectTrigger className="w-32">
+                       <SelectValue />
+                     </SelectTrigger>
+                     <SelectContent>
+                       <SelectItem value="gemini">Gemini 2.5</SelectItem>
+                       <SelectItem value="claude">Claude Sonnet</SelectItem>
+                       <SelectItem value="dalle">DALL-E 3</SelectItem>
+                     </SelectContent>
+                   </Select>
                 </div>
                 
                 <div className="flex items-center gap-2">
                   <Label>Response:</Label>
-                  <Select value={responseMode} onValueChange={(value: any) => setResponseMode(value)}>
-                    <SelectTrigger className="w-24">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="concise">Concise</SelectItem>
-                      <SelectItem value="normal">Normal</SelectItem>
-                      <SelectItem value="detailed">Detailed</SelectItem>
-                    </SelectContent>
-                  </Select>
+                                     <Select value={responseMode} onValueChange={(value: 'concise' | 'normal' | 'detailed') => setResponseMode(value)}>
+                     <SelectTrigger className="w-24">
+                       <SelectValue />
+                     </SelectTrigger>
+                     <SelectContent>
+                       <SelectItem value="concise">Concise</SelectItem>
+                       <SelectItem value="normal">Normal</SelectItem>
+                       <SelectItem value="detailed">Detailed</SelectItem>
+                     </SelectContent>
+                   </Select>
                 </div>
                 
                 <div className="flex items-center gap-2">
