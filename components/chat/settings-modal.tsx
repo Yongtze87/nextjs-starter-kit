@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { X, User, Bell, Shield, Palette, Download, Trash2, HelpCircle } from 'lucide-react'
+import { User, Bell, Shield, Palette, Download, Trash2, HelpCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'

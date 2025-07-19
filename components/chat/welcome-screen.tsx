@@ -56,10 +56,10 @@ export default function WelcomeScreen({ onStartChat }: WelcomeScreenProps) {
             <span className="text-2xl font-bold">C</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Hello! I'm Claude.
+            Hello! I&apos;m Claude.
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            I'm an AI assistant created by Anthropic. I'm here to help with analysis, math, coding, creative writing, and much more. How can I assist you today?
+            I&apos;m an AI assistant created by Anthropic. I&apos;m here to help with analysis, math, coding, creative writing, and much more. How can I assist you today?
           </p>
         </div>
 
